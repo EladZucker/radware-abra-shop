@@ -1,14 +1,12 @@
 import "./App.css";
 import styled from "styled-components";
-
+import Header from "./Components/Header";
 export const StyledMainWrapper = styled.main``;
-
-export const StyledHeader = styled.header``;
 
 function App() {
   return (
     <StyledMainWrapper>
-      <StyledHeader></StyledHeader>
+      <Header></Header>
     </StyledMainWrapper>
   );
 }
