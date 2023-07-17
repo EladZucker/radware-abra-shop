@@ -3,14 +3,13 @@ import styled from "styled-components";
 import HamburgerIcon from "../../../assets/menu.png";
 import useMedia from "../../../Hooks/useMedia";
 
-const Menu = ({ className, maxMobileResolution = 400 }) => {
+const Menu = ({ className, menuItems, maxMobileResolution = 400 }) => {
   const breakPoints = [
     { min: 0, max: maxMobileResolution, name: "mobile" },
     { min: maxMobileResolution + 1, max: 10000, name: "desktop" },
   ];
 
   const currentBreakpoint = useMedia(breakPoints);
-  console.log(currentBreakpoint);
 
   return (
     <MenuWrapper className={className}>
@@ -21,11 +20,13 @@ const Menu = ({ className, maxMobileResolution = 400 }) => {
       )}
       {currentBreakpoint?.name === "desktop" && (
         <>
-          <MenuItem href="#">Best Sellers</MenuItem>
-          <MenuItem href="#"> Clothing</MenuItem>
-          <MenuItem href="#">Home</MenuItem>
-          <MenuItem href="#">Office</MenuItem>
-          <MenuItem href="#">Sports</MenuItem>
+          {menuItems.map((item) => {
+            return (
+              <MenuItem href="#" key={item.id}>
+                {item.name}
+              </MenuItem>
+            );
+          })}
         </>
       )}
     </MenuWrapper>

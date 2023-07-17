@@ -4,10 +4,20 @@ import AccountImage from "../../assets/account_circle.png";
 import Menu from "../Common/Menu";
 import { deviceSize } from "../../constants";
 const Header = () => {
+  const menuItems = [
+    { id: 1, name: "Best Sellers" },
+    { id: 2, name: "Clothing " },
+    { id: 3, name: "Home" },
+    { id: 4, name: "Office" },
+    { id: 5, name: "Sports" },
+  ];
   return (
     <StyledHeaderWrapper>
       <StyledLogo src={LogoImage}></StyledLogo>
-      <StyledMenu maxMobileResolution={deviceSize.mobile}></StyledMenu>
+      <StyledMenu
+        menuItems={menuItems}
+        maxMobileResolution={deviceSize.mobile}
+      ></StyledMenu>
       <StyledAccountIcon src={AccountImage}></StyledAccountIcon>
     </StyledHeaderWrapper>
   );
