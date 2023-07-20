@@ -56,7 +56,7 @@ const StyledLogoutWrapper = styled.div`
 const StyledMenuItemsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 54px;
+  margin-top: 51px;
   margin-left: 18px;
   gap: 26px;
 `;
