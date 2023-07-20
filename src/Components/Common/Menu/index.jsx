@@ -2,12 +2,16 @@
 import styled from "styled-components";
 import HamburgerIcon from "../../../assets/menu.png";
 import useMedia from "../../../Hooks/useMedia";
-
+import { useState } from "react";
+import Drawer from "../Drawer";
+import DrawerMenu from "./DrawerMenu";
 const Menu = ({ className, menuItems, maxMobileResolution = 400 }) => {
   const breakPoints = [
     { min: 0, max: maxMobileResolution, name: "mobile" },
     { min: maxMobileResolution + 1, max: 10000, name: "desktop" },
   ];
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const currentBreakpoint = useMedia(breakPoints);
 
@@ -15,14 +19,25 @@ const Menu = ({ className, menuItems, maxMobileResolution = 400 }) => {
     <MenuWrapper className={className}>
       {currentBreakpoint?.name === "mobile" && (
         <>
-          <Hamburger src={HamburgerIcon}></Hamburger>
+          <Hamburger
+            onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+            src={HamburgerIcon}
+          ></Hamburger>
+          {isDrawerOpen && (
+            <Drawer>
+              <DrawerMenu
+                menuItems={menuItems}
+                onClose={() => setIsDrawerOpen(false)}
+              />
+            </Drawer>
+          )}
         </>
       )}
       {currentBreakpoint?.name === "desktop" && (
         <>
           {menuItems.map((item) => {
             return (
-              <MenuItem href="#" key={item.id}>
+              <MenuItem href={item.url} key={item.id}>
                 {item.name}
               </MenuItem>
             );

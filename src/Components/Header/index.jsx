@@ -5,11 +5,11 @@ import Menu from "../Common/Menu";
 import { deviceSize } from "../../constants";
 const Header = () => {
   const menuItems = [
-    { id: 1, name: "Best Sellers" },
-    { id: 2, name: "Clothing " },
-    { id: 3, name: "Home" },
-    { id: 4, name: "Office" },
-    { id: 5, name: "Sports" },
+    { id: 1, name: "Best Sellers", url: "/best-sellers" },
+    { id: 2, name: "Clothing ", url: "/clothing" },
+    { id: 3, name: "Home", url: "/home" },
+    { id: 4, name: "Office", url: "/office" },
+    { id: 5, name: "Sports", url: "/sports" },
   ];
   return (
     <StyledHeaderWrapper>
