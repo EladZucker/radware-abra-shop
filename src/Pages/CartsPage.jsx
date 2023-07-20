@@ -3,9 +3,22 @@ import Button from "../Components/Common/Button";
 import CartItems from "../Components/Cart/CartItems";
 import EmptyCart from "../Components/Cart/EmptyCart";
 import { deviceSize } from "../constants";
+import { useContext } from "react";
+import { StoreContext } from "../Services/StoreProvider";
+
 const CartPage = () => {
+  const { cart, checkout } = useContext(StoreContext);
+  const getCartSubtotal = () => {
+    let sum = 0;
+    for (const item of cart) {
+      sum += item.quantity * item.price;
+    }
+
+    return sum;
+  };
+
+  const sum = getCartSubtotal();
   const isCartEmpty = false;
-  const sum = 101;
   return (
     <StyledCartWrapper>
       <CartItemsWrapper>
@@ -20,7 +33,9 @@ const CartPage = () => {
                 <StyledSubtotal>SubTotal</StyledSubtotal>
                 <StyledSubtotalPrice>{sum}</StyledSubtotalPrice>
               </StyledTotalWrapper>
-              <StyledCheckoutButton>CHECKOUT</StyledCheckoutButton>
+              <StyledCheckoutButton onClick={checkout}>
+                CHECKOUT
+              </StyledCheckoutButton>
             </StyledCheckoutWrapper>
           </>
         )}

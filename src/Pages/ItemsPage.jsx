@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import ItemsList from "../Components/Items/ItemsList";
 import { deviceSize } from "../constants";
+import { useContext } from "react";
+import { StoreContext } from "../Services/StoreProvider";
+
 const ItemsPage = ({ category }) => {
   return (
     <StyledItemsPageWrapper>

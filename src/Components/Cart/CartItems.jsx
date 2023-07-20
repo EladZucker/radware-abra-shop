@@ -1,36 +1,31 @@
 import styled from "styled-components";
 import CartItem from "./CartItem";
 import { deviceSize } from "../../constants";
+import { useContext } from "react";
+import { StoreContext } from "../../Services/StoreProvider";
 
 const CartItems = () => {
-  const cart = [];
+  const { cart, addItemToCart, removeItemFromCart } = useContext(StoreContext);
   return (
     <StyledCartItemsWrapper>
-      <CartItem
-        name="Black T-shirt"
-        price="89"
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        quantity={5}
-      ></CartItem>
-      <CartItem
-        name="Black T-shirt"
-        price="89"
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        quantity={5}
-      ></CartItem>
-
-      <CartItem
-        name="Black T-shirt"
-        price="89"
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        quantity={5}
-      ></CartItem>
-      <CartItem
-        name="Black T-shirt"
-        price="89"
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        quantity={5}
-      ></CartItem>
+      {cart.map((item) => (
+        <CartItem
+          key={item.id}
+          image={item.image}
+          quantity={item.quantity}
+          name={item.name}
+          price={item.price}
+          onRemoveItem={() => {
+            removeItemFromCart(item, true);
+          }}
+          onAdd={() => {
+            addItemToCart(item);
+          }}
+          onReduce={() => {
+            removeItemFromCart(item);
+          }}
+        />
+      ))}
     </StyledCartItemsWrapper>
   );
 };

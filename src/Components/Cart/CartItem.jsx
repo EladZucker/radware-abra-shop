@@ -1,7 +1,15 @@
 import styled from "styled-components";
 import closeButton from "../../assets/close.png";
 import { deviceSize } from "../../constants";
-const CartItem = ({ name, price, image, quantity }) => {
+const CartItem = ({
+  name,
+  price,
+  image,
+  quantity,
+  onRemoveItem,
+  onReduce,
+  onAdd,
+}) => {
   return (
     <>
       <StyledCartItemWrapper>
@@ -10,12 +18,15 @@ const CartItem = ({ name, price, image, quantity }) => {
           <StyledCartItemTitle>{name}</StyledCartItemTitle>
           <StyledCartItemPrice>{price} ILS</StyledCartItemPrice>
           <StyledCartItemQuantity>
-            <StyledQuantity>-</StyledQuantity>
+            <StyledQuantity onClick={onReduce}>-</StyledQuantity>
             <StyledQuantity>{quantity}</StyledQuantity>
-            <StyledQuantity>+</StyledQuantity>
+            <StyledQuantity onClick={onAdd}>+</StyledQuantity>
           </StyledCartItemQuantity>
         </StyledCartItemDetailsWrapper>
-        <StyledDeleteButtonImage src={closeButton}></StyledDeleteButtonImage>
+        <StyledDeleteButtonImage
+          onClick={onRemoveItem}
+          src={closeButton}
+        ></StyledDeleteButtonImage>
       </StyledCartItemWrapper>
     </>
   );

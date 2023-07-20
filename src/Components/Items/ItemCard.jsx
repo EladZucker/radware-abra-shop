@@ -3,15 +3,20 @@ import Button from "../Common/Button";
 import { deviceSize } from "../../constants";
 
 const ItemCard = ({ image, name, price, quantity, onAddToBag }) => {
+  console.log(name + " " + quantity);
   return (
     <>
       <StyledItemWrapper>
         <StyledItemImage src={image}></StyledItemImage>
         <StyledItemName>{name}</StyledItemName>
         <StyledItemPrice>{price} ILS</StyledItemPrice>
-        <StyledAddToBagButton onClick={onAddToBag}>
-          ADD TO BAG
-        </StyledAddToBagButton>
+        {quantity !== 0 ? (
+          <StyledAddToBagButton onClick={onAddToBag}>
+            ADD TO BAG
+          </StyledAddToBagButton>
+        ) : (
+          <StyledAddToBagButton disabled>SOLD OUT</StyledAddToBagButton>
+        )}
       </StyledItemWrapper>
     </>
   );

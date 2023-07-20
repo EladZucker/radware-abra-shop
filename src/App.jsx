@@ -4,19 +4,23 @@ import Header from "./Components/Header";
 import ItemsPage from "./Pages/ItemsPage";
 import CartPage from "./Pages/CartsPage";
 import { deviceSize } from "./constants";
+import StoreProvider from "./Services/StoreProvider";
 function App() {
   return (
     <StyledMainWrapper>
       <Header></Header>
-      <StyledContentWrapper>
-        <ItemsPage
-          category={{
-            presentationName: "Best Seller",
-            filterName: "best-seller",
-          }}
-        ></ItemsPage>
-        <CartPage></CartPage>
-      </StyledContentWrapper>
+
+      <StoreProvider>
+        <StyledContentWrapper>
+          <ItemsPage
+            category={{
+              presentationName: "Best Seller",
+              filterName: "best-seller",
+            }}
+          ></ItemsPage>
+          <CartPage></CartPage>
+        </StyledContentWrapper>
+      </StoreProvider>
     </StyledMainWrapper>
   );
 }

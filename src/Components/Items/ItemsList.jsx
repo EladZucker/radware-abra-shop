@@ -1,45 +1,32 @@
 import styled from "styled-components";
 import ItemCard from "./ItemCard";
 import { deviceSize } from "../../constants";
+import { useContext } from "react";
+import { StoreContext } from "../../Services/StoreProvider";
+
 const ItemsList = () => {
+  const { cart, items, addItemToCart } = useContext(StoreContext);
+
+  console.log(items);
   return (
     <ItemsListWrapper>
-      <ItemCard
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        name="White Mouse Pad"
-        price="57"
-        quantity={5}
-      ></ItemCard>
-      <ItemCard
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        name="White Mouse Pad"
-        price="57"
-        quantity={5}
-      ></ItemCard>
-      <ItemCard
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        name="White Mouse Pad"
-        price="57"
-        quantity={5}
-      ></ItemCard>
-      <ItemCard
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        name="White Mouse Pad"
-        price="57"
-        quantity={5}
-      ></ItemCard>
-      <ItemCard
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        name="White Mouse Pad"
-        price="57"
-        quantity={5}
-      ></ItemCard>
-      <ItemCard
-        image="https://elad-test-1.s3.amazonaws.com/tshirt.png"
-        name="White Mouse Pad"
-        price="57"
-        quantity={5}
-      ></ItemCard>
+      {items.map((item) => {
+        const cartItem = cart.find((element) => element.id === item.id);
+
+        const calculatedQuantity = cartItem
+          ? item.quantity - cartItem.quantity
+          : item.quantity;
+        return (
+          <ItemCard
+            key={item.id}
+            image={item.image}
+            name={item.name}
+            price={item.price}
+            quantity={calculatedQuantity}
+            onAddToBag={() => addItemToCart(item)}
+          />
+        );
+      })}
     </ItemsListWrapper>
   );
 };
